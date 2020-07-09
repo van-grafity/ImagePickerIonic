@@ -1,5 +1,7 @@
 {
-  "name": "ZenwelCust",
-  "integrations": {},
+  "name": "ImagePickerIonic",
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

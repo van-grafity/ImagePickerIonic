@@ -1,20 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-row>
+      <ion-title>
+        Image Picker
+      </ion-title>
+      <ion-button (click)="getImages()" shape="round">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+      
+      <ion-button (click)="uploadFile()"> Upload & Preview </ion-button>
+      <img [src]="imageURL ? imageURL : 'assets/icon/favicon.png'" style="width: 100px; height: 100px;"
+        alt="HA">
+      <input type="file" *ngIf="!imageURL" (change)="fileChanged($event)" accept="image/*" class="filebtn"
+        #fileButton />
+
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="3">
+        <!-- More Pinterest floating gallery style -->
+        <div class="images">
+          <div class="one-image" *ngFor="let img of images; let i = index;">
+            <img src="{{img}}" (click)="presentToast(i)">
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title slot="end">{{testerCode}}</ion-title>
+  </ion-toolbar>
+</ion-footer>
